@@ -1,0 +1,52 @@
+:root {
+  --color-primary: #220810;
+  --color-secondary: #1c141d;
+  --color-text: #ededed;
+  --color-text-on-light: #000000;
+  --color-muted: #bfb6b6;
+  --color-accent-seal: #431E29;
+
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 40px;
+  --space-xxl: 64px;
+
+  --font-heading-en: 'Manufacturing Consent', serif;
+  --font-heading-ar: 'Aref Ruqaa', serif;
+  --font-body-en: 'Tinos', serif;
+  --font-body-ar: 'Amiri', serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background-color: var(--color-primary);
+  color: var(--color-text);
+  font-family: var(--font-body-en);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+button {
+  font-family: inherit;
+}

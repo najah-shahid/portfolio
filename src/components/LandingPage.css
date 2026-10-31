@@ -1,0 +1,366 @@
+.landing {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-lg) var(--space-lg) var(--space-xl);
+  background-color: var(--color-primary);
+}
+
+/* Not fixed/sticky on purpose — the whole navbar, language toggle included, is part of the
+   landing hero and scrolls away with it rather than staying pinned across the whole page.
+   3-column grid centers the links independently of the toggle's width, so they stay centered
+   on the row rather than just centered in the leftover space next to it. */
+.navbar {
+  position: relative;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+/* `display: contents` on large screens means .navbar__panel itself doesn't participate in
+   layout — its children (.navbar__links, .language-toggle) become direct grid items of .navbar.
+   Below the mobile breakpoint this becomes the actual slide-in side panel, and both groups stack
+   inside it instead. */
+.navbar__panel {
+  display: contents;
+}
+
+.navbar__links {
+  grid-column: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+}
+
+.site-nav__link {
+  display: inline-flex;
+  align-items: center;
+  background-color: transparent;
+  color: var(--color-text);
+  padding: 6px 16px;
+  border-radius: 3px;
+  font-family: var(--font-heading-en);
+  font-weight: 400;
+  font-size: 20px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.2s ease;
+}
+
+.site-nav__link:hover {
+  background-color: rgba(67, 30, 41, 0.55);
+}
+
+.site-nav__link.is-active {
+  background-color: var(--color-accent-seal);
+}
+
+.site-nav__link:focus-visible {
+  outline: 2px solid var(--color-text);
+  outline-offset: 2px;
+}
+
+.language-toggle {
+  grid-column: 3;
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  background-color: var(--color-text);
+  padding: var(--space-xs) var(--space-sm);
+  font-family: var(--font-body-en);
+  font-style: italic;
+  font-size: 14px;
+}
+
+.navbar__panel-close,
+.navbar__panel-border {
+  display: none;
+}
+
+.navbar__menu-button {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  color: var(--color-text);
+  /* background-color: var(--color-text); */
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.navbar__menu-button:focus-visible {
+  outline: 2px solid var(--color-text);
+  outline-offset: 2px;
+}
+
+.navbar__scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: transparent;
+}
+
+.landing__main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xl);
+}
+
+.language-toggle__option {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-on-light);
+  font: inherit;
+  padding: 2px 4px;
+  border-radius: 2px;
+}
+
+.language-toggle__option.is-active {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.language-toggle__option:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.language-toggle__divider {
+  color: var(--color-text-on-light);
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.hero__frame {
+  position: relative;
+  width: min(500px, 90vw);
+}
+
+.hero__frame-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.hero__text {
+  position: absolute;
+  inset: 28% 14% 24% 14%;
+  display: flex;
+  flex-direction: column;
+  
+  justify-content: center;
+  text-align: start;
+  gap: var(--space-sm);
+}
+
+.hero__welcome {
+  margin: 0;
+  font-family: var(--font-body-en);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--color-muted);
+}
+
+.hero__title {
+  margin: 0;
+  font-family: var(--font-heading-en);
+  font-weight: 400;
+  font-size: clamp(22px, 4vw, 34px);
+  line-height: 1.3;
+  color: var(--color-text);
+}
+
+.badge-row {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-sm);
+  margin: 0;
+  padding: 0;
+}
+
+.badge-row__item {
+  border: 1px solid var(--color-text-on-light);
+  padding: 6px 14px;
+  font-family: var(--font-body-en);
+  font-size: 14px;
+  color: var(--color-text-on-light);
+  background-color: var(--color-text);
+}
+
+.scroll-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  color: var(--color-muted);
+}
+
+.scroll-prompt__label {
+  font-family: var(--font-body-en);
+  font-style: italic;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.scroll-prompt__icon {
+  color: var(--color-muted);
+  animation: scroll-bounce 2s ease-in-out infinite;
+}
+
+@keyframes scroll-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-prompt__icon {
+    animation: none;
+  }
+}
+
+/* Arabic script needs its own typefaces; the blackletter/Tinos pairing has no Arabic glyphs */
+.landing[data-lang='ar'] .hero__welcome,
+.landing[data-lang='ar'] .badge-row__item,
+.landing[data-lang='ar'] .scroll-prompt__label,
+.landing[data-lang='ar'] .language-toggle {
+  font-family: var(--font-body-ar);
+}
+
+.landing[data-lang='ar'] .hero__title,
+.landing[data-lang='ar'] .site-nav__link {
+  font-family: var(--font-heading-ar);
+  font-weight: 700;
+}
+
+.landing[data-lang='ar'] .scroll-prompt__label {
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+@media (max-width: 640px) {
+  .landing {
+    padding: var(--space-md) var(--space-md) var(--space-xl);
+  }
+
+  .navbar {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .navbar__menu-button {
+    display: flex;
+  }
+
+  /* The side panel itself: fixed, full height, slid in from the right edge, with a hand-drawn
+     double-line border down its left side (see the SVG filter in LandingPage.tsx). */
+  .navbar__panel {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(220px, 70vw);
+    z-index: 50;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-lg);
+    padding: var(--space-xxl) var(--space-lg) var(--space-lg);
+    background-color: var(--color-primary);
+    box-shadow: -8px 0 24px rgba(0, 0, 0, 0.5);
+  }
+
+  .navbar__panel.is-open {
+    display: flex;
+  }
+
+  .navbar__panel-close {
+    display: flex;
+    position: absolute;
+    top: var(--space-md);
+    inset-inline-end: var(--space-md);
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    color: var(--color-text);
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .navbar__panel-close:focus-visible {
+    outline: 2px solid var(--color-text);
+    outline-offset: 2px;
+  }
+
+  .navbar__panel-border {
+    display: block;
+    position: absolute;
+    top: 0;
+    inset-inline-start: 0;
+    width: 18px;
+    height: 100%;
+  }
+
+  .navbar__panel-border line {
+    stroke: var(--color-muted);
+    stroke-width: 1;
+    fill: none;
+  }
+
+  .navbar__links {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 0;
+    margin-top: var(--space-lg);
+  }
+
+  .site-nav__link {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    padding: var(--space-md) var(--space-sm);
+    border-radius: 0;
+    border-bottom: 1px solid var(--color-muted);
+  }
+
+  .navbar__links .site-nav__link:last-child {
+    border-bottom: none;
+  }
+
+  .language-toggle {
+    margin-top: var(--space-lg);
+    justify-content: center;
+  }
+
+  .badge-row__item {
+    padding: 4px 10px;
+    font-size: 12px;
+  }
+}

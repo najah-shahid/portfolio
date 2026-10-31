@@ -1,0 +1,351 @@
+.about {
+  position: relative;
+  min-height: 100vh;
+  padding: var(--space-xl) var(--space-xl) 0 var(--space-xl);
+  background-color: var(--color-primary);
+  background-image: url('../assets/bckgrnd.png');
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+}
+
+.about__content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(200px, 240px) 2fr 2fr;
+  gap: var(--space-xl);
+  align-items: start;
+}
+
+.about__portrait {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-xs);
+}
+
+.about__portrait-frame {
+  position: relative;
+  /* margin */
+  width: 240px;
+}
+
+.about__frame-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* positioned (not static) so it reliably paints above the photo placeholder below, which is
+     also positioned — stacking order between two positioned siblings follows DOM order, but a
+     static element always paints under any positioned sibling regardless of DOM order */
+  position: relative;
+  z-index: 2;
+}
+
+.about__portrait-placeholder {
+  position: absolute;
+  z-index: 1;
+  inset: 12% 13% 10% 11%;
+  border-radius: 90%;
+  background: var(--color-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-muted);
+  overflow: hidden;
+}
+
+.about__portrait-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.8) contrast(1.05);
+}
+
+.about__name {
+  font-family: var(--font-heading-en);
+  font-weight: 400;
+  font-size: 2rem;
+  margin: var(--space-sm) 0 0;
+  color: var(--color-text);
+}
+
+.about__role {
+  font-family: var(--font-body-en);
+  font-size: 1rem;
+  color: var(--color-muted);
+  margin: 0;
+}
+
+.about__bio, .about__side {
+  margin-top: var(--space-xxl);
+}
+.about__heading {
+  font-family: var(--font-heading-en);
+  font-weight: 400;
+  font-size: 2rem;
+  text-align: center;
+  color: var(--color-text);
+  margin: var(--space-xs) 0;
+}
+
+/* bottom border.png's ink sits in the lower ~58% of the canvas; crop it to that band so the
+   line's position stays fixed regardless of how wide the column renders */
+.about__divider {
+  width: 100%;
+  aspect-ratio: 1742 / 131;
+  position: relative;
+  margin: var(--space-xs) 0 var(--space-sm);
+}
+
+.about__divider img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  max-width: none;
+  transform: translateY(-80%);
+}
+
+.about__divider--flipped img {
+  transform: translateY(-42.04%) scaleX(-1);
+}
+
+.about__paragraph {
+  font-family: var(--font-body-en);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--color-text);
+  margin: 0 0 var(--space-md) 0;
+}
+
+.about__side {
+  display: flex;
+  flex-direction: column;
+  gap: 23px;
+}
+
+.education-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  
+}
+
+.education-list__item {
+  position: relative;
+  display: flex;
+  gap: var(--space-md);
+  padding-bottom: var(--space-md);
+}
+
+.education-list__item:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  inset-inline-start: 5px;
+  top: 14px;
+  bottom: -8px;
+  width: 1px;
+  background: var(--color-muted);
+}
+
+.education-list__marker {
+  flex: 0 0 auto;
+  width: 10px;
+  height: 10px;
+  margin-top: 6px;
+  background: var(--color-text);
+  transform: rotate(45deg);
+}
+
+.education-list__body{
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+}
+.education-list__body p {
+  margin: 4px 12px 4px 0;
+}
+
+.education-list__date {
+  font-family: var(--font-body-en);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--color-text);
+  margin-bottom: 4px !important;
+}
+
+.education-list__institution {
+  font-family: var(--font-body-en);
+  font-size: 13px;
+  color: var(--color-text);
+}
+
+.education-list__location,
+.education-list__program {
+  font-family: var(--font-body-en);
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+.skills-row {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.skill-envelope {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+.skill-envelope__trigger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  width: 100px;
+}
+
+.skill-envelope__image {
+  display: block;
+  width: 100px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.55));
+  transition: transform 0.3s ease;
+}
+
+.skill-envelope__trigger:hover .skill-envelope__image {
+  transform: translateY(-2px);
+}
+
+.skill-envelope__trigger:focus-visible {
+  outline: 2px solid var(--color-text);
+  outline-offset: 4px;
+}
+
+.skill-envelope__paper {
+  position: absolute;
+  bottom: 30%;
+  left: 50%;
+  width: 90px;
+  padding: var(--space-sm);
+  padding-bottom: var(--space-md);
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.55);
+  text-align: left;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 12px) scale(0.85);
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+.skill-envelope__paper.is-open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, 0) scale(1);
+}
+
+.skill-envelope__title {
+  margin: 0 0 var(--space-xs);
+  font-family: var(--font-body-en);
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--color-text-on-light);
+}
+
+.skill-envelope__list {
+  margin: 0;
+  padding-left: 14px;
+  font-family: var(--font-body-en);
+  font-size: 11px;
+  line-height: 1.2;
+  color: var(--color-text-on-light);
+}
+
+.skill-envelope__list li {
+  margin-bottom: 4px;
+}
+
+.about__cat {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 84px;
+  height: auto;
+}
+
+@media (max-width: 860px) {
+  .about {
+    padding: var(--space-lg) var(--space-lg) var(--space-xl);
+  }
+
+  .about__content {
+    grid-template-columns: 1fr;
+  }
+
+  .about__bio, .about__side {
+    margin-top: var(--space-xs);
+  }
+}
+
+@media (max-width: 480px) {
+  .about {
+    padding: var(--space-md) var(--space-md) var(--space-lg);
+  }
+
+  .about__portrait-frame {
+    width: 180px;
+  }
+
+  .about__name {
+    font-size: 1.5rem;
+  }
+
+  .about__heading {
+    font-size: 1.5rem;
+  }
+
+  .education-list__body {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .skills-row {
+    flex-wrap: wrap;
+    row-gap: var(--space-md);
+  }
+}
+
+/* Arabic script needs its own typefaces; the blackletter/Tinos pairing has no Arabic glyphs */
+.about[data-lang='ar'] .about__heading,
+.about[data-lang='ar'] .about__name {
+  font-family: var(--font-heading-ar);
+  font-weight: 700;
+}
+
+.about[data-lang='ar'] .about__paragraph,
+.about[data-lang='ar'] .about__role,
+.about[data-lang='ar'] .education-list__date,
+.about[data-lang='ar'] .education-list__institution,
+.about[data-lang='ar'] .education-list__location,
+.about[data-lang='ar'] .education-list__program,
+.about[data-lang='ar'] .skill-envelope__title {
+  font-family: var(--font-body-ar);
+}
+
+.about[data-lang='ar'] .skill-envelope__paper {
+  text-align: right;
+}
+
+.about[data-lang='ar'] .skill-envelope__list {
+  padding-left: 0;
+  padding-right: 18px;
+}

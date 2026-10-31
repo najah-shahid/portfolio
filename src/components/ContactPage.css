@@ -1,0 +1,482 @@
+.contact {
+  position: relative;
+  min-height: 100vh;
+  padding: var(--space-xxl) var(--space-xl);
+  background-image: url('../assets/bckgrnd.png');
+  background-color: var(--color-primary);
+  background-size: cover;
+  background-position: bottom center;
+  background-repeat: no-repeat;
+}
+
+.contact__note,
+.contact-card {
+  background-size: cover;
+  background-position: center;
+  box-shadow: 4px 6px 14px rgba(0, 0, 0, 0.5);
+}
+
+.contact__note {
+  position: absolute;
+  width: 140px;
+  padding: var(--space-md);
+  color: var(--color-text-on-light);
+}
+
+.contact__pin {
+  position: absolute;
+  top: -8px;
+  inset-inline-start: 50%;
+  transform: translateX(-50%);
+  width: 26px;
+  height: 26px;
+}
+
+/* Both sprite sheets (big-animation-sheet-1.png, small-animation-sheet.png) are now real uniform
+   grids — 6 equal-width frames with genuine transparent gaps between them — so plain percentage
+   background-position stepping lands exactly on each frame with no neighbor bleeding in:
+   background-size 600% 100% scales the strip to 6x the box, and each 20% step of
+   background-position-x moves exactly one frame. aspect-ratio (sheet width / (6 * sheet height))
+   keeps a frame undistorted regardless of the box's own display size, and is all that differs
+   between the three size variants below — the animation itself is shared. */
+.contact__note-moth {
+  display: block;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-size: 600% 100%;
+  background-position: 0% 0;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.contact__note-moth:hover,
+.contact__note-moth:focus-visible {
+  animation: moth-flap-sheet 0.5s steps(5) infinite alternate;
+}
+
+.contact__note-moth:focus-visible {
+  outline: 2px solid var(--color-text-on-light);
+  outline-offset: 2px;
+}
+
+.contact__note-moth.is-flapping {
+  animation: moth-flap-sheet 0.5s steps(5) 2 alternate;
+}
+
+@keyframes moth-flap-sheet {
+  from {
+    background-position: 0% 0;
+  }
+  to {
+    background-position: 100% 0;
+  }
+}
+
+.contact__note-moth--big {
+  width: 90px;
+  aspect-ratio: 1954 / 1284;
+  margin: 0 auto var(--space-sm);
+}
+
+.contact__note-moth--small {
+  width: 48px;
+  aspect-ratio: 1966 / 1596;
+  margin: 0 0 var(--space-md) var(--space-xxl);
+}
+
+.contact__note-moth--solo {
+  width: 70px;
+  aspect-ratio: 1954 / 1284;
+  margin-top: var(--space-sm);
+  margin-inline-start: auto;
+  margin-inline-end: 0;
+  transform: rotate(6deg);
+}
+
+/* Equal specificity to the :hover/:focus-visible/.is-flapping rules above (one class + one
+   pseudo-class each) and later in the cascade, so this wins without needing !important. */
+@media (prefers-reduced-motion: reduce) {
+  .contact__note-moth:hover,
+  .contact__note-moth:focus-visible,
+  .contact__note-moth.is-flapping {
+    animation: none;
+  }
+}
+
+.contact__note-title {
+  margin: var(--space-sm) 0;
+
+  font-weight: 400;
+  font-size: 12px;
+  text-align: start;
+}
+
+.contact__note-list {
+  margin: 0;
+  padding-inline-start: 10px;
+  font-family: var(--font-body-en);
+  font-size: 10px;
+  line-height: 1.6;
+  text-align: start;
+}
+
+.contact__note-list--numbered {
+  padding-top: 8px;
+  padding-inline-start: 10px;
+}
+
+.contact__note--reminder {
+  top: 24%;
+  inset-inline-start: 1%;
+  transform: rotate(-8deg);
+  z-index: 1;
+  padding-bottom: 32px;
+}
+
+.contact__note--steps {
+  top: 8%;
+  inset-inline-start: 9%;
+  transform: rotate(-5deg);
+}
+
+.contact__note--moth-only {
+  top: 58%;
+  inset-inline-start: 4%;
+  width: 96px;
+  text-align: center;
+  transform: rotate(4deg);
+  padding-bottom: 28px;
+}
+
+.contact-card {
+  position: relative;
+  width: min(380px, 88vw);
+  margin: 0 auto;
+  padding: var(--space-lg);
+  color: var(--color-text-on-light);
+  transform-origin: bottom center;
+}
+
+.contact-card.is-sending {
+  opacity: 0.75;
+}
+
+.contact-card__heading {
+  margin: 0 0 var(--space-lg);
+  font-family: var(--font-heading-en);
+  font-weight: 400;
+  font-size: 36px;
+  text-align: center;
+}
+
+.contact-card__field {
+  display: block;
+  margin-bottom: var(--space-md);
+  font-family: var(--font-body-en);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-on-light);
+}
+
+.contact-card__field input, .contact-card__field textarea {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+  border: none;
+  border-bottom: 1px solid var(--color-text-on-light);
+  background: transparent;
+  font-family: var(--font-body-en);
+  font-size: 15px;
+  text-transform: none;
+  letter-spacing: normal;
+  padding: 4px 0;
+  color: var(--color-text-on-light);
+}
+
+.contact-card__field textarea {
+  resize: none;
+  border: 1px solid var(--color-text-on-light);
+}
+
+.contact-card__field input:focus-visible,
+.contact-card__field textarea:focus-visible {
+  outline: none;
+  border-bottom-color: var(--color-primary);
+}
+
+.contact-card__submit {
+  display: block;
+  margin: var(--space-lg) auto 0;
+  padding: 4px 16px;
+  cursor: pointer;
+  font-family: var(--font-heading-en);
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--color-text-on-light);
+  background: transparent;
+  border: 1px solid var(--color-text-on-light);
+}
+
+.contact-card__submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.contact-card__submit:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.contact-card__submit-loading {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.contact-card__spinner {
+  width: 12px;
+  height: 12px;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: contact-card-spin 0.8s linear infinite;
+}
+
+@keyframes contact-card-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-card__spinner {
+    animation: none;
+  }
+}
+
+.contact-popup-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.contact-popup {
+  width: min(320px, 85vw);
+  padding: var(--space-lg);
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+  color: var(--color-text-on-light);
+  text-align: center;
+}
+
+.contact-popup__message {
+  margin: 0 0 var(--space-lg);
+  font-family: var(--font-body-en);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.contact-popup__close {
+  padding: 6px 22px;
+  cursor: pointer;
+  font-family: var(--font-heading-en);
+  font-weight: 400;
+  font-size: 15px;
+  color: var(--color-text);
+  background: var(--color-primary);
+  border: 1px solid var(--color-primary);
+}
+
+.contact-popup__close:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.contact__note--quote {
+  width: 128px;
+  font-family: var(--font-body-en);
+  
+}
+
+.contact__note--quote-1 {
+  top: 12%;
+  inset-inline-end: 6%;
+  transform: rotate(4deg);
+}
+
+.contact__note--quote-2 {
+  top: 58%;
+  inset-inline-end: 4%;
+  transform: rotate(-3deg);
+}
+
+.contact__quote-text {
+  margin: 0 0 var(--space-sm);
+  font-style: italic;
+  font-size: 10px;
+  line-height: 1;
+  text-align: center;
+}
+
+.contact__quote-author {
+  margin: 0 0 var(--space-md);
+  font-size: 10px;
+  text-align: right;
+  color: var(--color-secondary);
+}
+
+.contact__footer {
+  position: absolute;
+  bottom: var(--space-lg);
+  inset-inline: var(--space-xl);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--space-md);
+}
+
+.contact__footer-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.contact__footer-group--icons {
+  flex-direction: row;
+  align-items: flex-end;
+  gap: var(--space-md);
+}
+
+.contact__footer-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-family: var(--font-body-en);
+  font-size: 14px;
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.contact__footer-icon {
+  display: flex;
+  color: var(--color-text);
+}
+
+.contact__footer-icon:focus-visible,
+.contact__footer-item:focus-visible {
+  outline: 2px solid var(--color-text);
+  outline-offset: 2px;
+}
+
+/* Arabic script needs its own typefaces; the blackletter/Tinos pairing has no Arabic glyphs */
+.contact[data-lang='ar'] .contact-card__heading,
+.contact[data-lang='ar'] .contact__note-title,
+.contact[data-lang='ar'] .contact-card__submit {
+  font-family: var(--font-heading-ar);
+  font-weight: 700;
+}
+
+.contact[data-lang='ar'] .contact-card__field,
+.contact[data-lang='ar'] .contact-card__field input,
+.contact[data-lang='ar'] .contact-card__field textarea,
+.contact[data-lang='ar'] .contact__note-list,
+.contact[data-lang='ar'] .contact__note--quote,
+.contact[data-lang='ar'] .contact__footer-item {
+  font-family: var(--font-body-ar);
+}
+
+.contact[data-lang='ar'] .contact-popup__message {
+  font-family: var(--font-body-ar);
+}
+
+.contact[data-lang='ar'] .contact-popup__close {
+  font-family: var(--font-heading-ar);
+  font-weight: 700;
+}
+
+/* The pinned sticky notes and the footer are laid out with absolute positions tuned for a wide
+   canvas. Below ~760px there isn't room for all five notes next to the card without overlapping
+   it, so most are dropped; one quote note and the moth note are kept as flavor and rejoin the
+   normal document flow (via flex `order`) stacked above/below the card, pin and rotation intact,
+   and the footer also rejoins the flow, stacked under everything. */
+@media (max-width: 760px) {
+  .contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--space-xl) var(--space-md) var(--space-xxl);
+    gap: var(--space-lg);
+  }
+
+  .contact__note {
+    display: none;
+  }
+
+  .contact__note--quote-1,
+  .contact__note--moth-only {
+    display: block;
+    position: relative;
+    top: auto;
+    bottom: auto;
+    inset-inline-start: auto;
+    inset-inline-end: auto;
+  }
+
+  .contact__note--quote-1 {
+    order: -1;
+    align-self: flex-end;
+    margin-inline-end: var(--space-md);
+  }
+
+  .contact-card {
+    order: 0;
+    width: 100%;
+  }
+
+  .contact__note--moth-only {
+    order: 1;
+    align-self: flex-start;
+    margin-inline-start: var(--space-md);
+    transform: rotate(-4deg);
+  }
+
+  .contact__footer {
+    order: 2;
+    position: static;
+    inset-inline: auto;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-lg);
+    margin-top: var(--space-lg);
+  }
+
+  .contact__footer-group {
+    align-items: center;
+  }
+}
+
+@media (max-width: 420px) {
+  .contact-card__heading {
+    font-size: 28px;
+  }
+}

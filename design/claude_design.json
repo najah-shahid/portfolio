@@ -1,0 +1,120 @@
+{
+  "meta": {
+    "title": "Goth Botanical Portfolio — Design File for Claude",
+    "author": "User",
+    "created": "2026-07-26",
+    "purpose": "Provide a single-file, structured design spec Claude can consume to generate components, HTML/CSS, content, or design tokens for a goth-botanical portfolio site."
+  },
+  "productBrief": {
+    "intent": "Computer Science graduate portfolio with Landing, About, Contact, and Projects pages.",
+    "theme": "Goth botanical — dark floral backgrounds, vintage ornamental frames, moths, black cat silhouettes. No gradients, no emojis, no modern glossy UI; keep a vintage-print, high-contrast aesthetic.",
+    "audience": "Recruiters, collaborators, and researchers seeking a CS graduate with UI/UX sensibility and full-stack experience."
+  },
+  "designTokens": {
+    "colors": {
+      "primary": { "value": "#220810", "usage": "Main landing background, selected states, cards, active elements" },
+      "secondary": { "value": "#1C141D", "usage": "Contact-page background, subtle accents (pins), sparing use only" },
+      "text": { "value": "#ededed", "usage": "Primary text on dark backgrounds" },
+      "textOnLight": { "value": "#000000", "usage": "Text when background is #ededed or white" },
+      "muted": { "value": "#bfb6b6", "usage": "Subheadings, dates, meta text" },
+      "accentSeal": { "value": "#7b2f34", "usage": "Small decorative elements such as stamps or labels (optional)" }
+    },
+    "spacing": {
+      "xs": 4,
+      "sm": 8,
+      "md": 16,
+      "lg": 24,
+      "xl": 40,
+        "xxl": 64
+    },
+    "typography": {
+      "headingFont": { "name": "Manufacturing Consent", "usage": "Headings, titles, high-contrast labels" },
+      "bodyFont": { "name": "Tinos", "usage": "Paragraphs, body text, captions" },
+      "weights": { "heading": 700, "body": 400 },
+      "sizes": { "h1": 48, "h2": 34, "h3": 24, "body": 16, "small": 14 }
+    },
+    "constraints": [
+      "No gradients",
+      "No emojis",
+      "No neon/glossy effects",
+      "Maintain vintage/gothic feel: ornamental borders, textured paper imagery, print-like typography"
+    ]
+  },
+  "cssSnippetExample": "--color-primary: #220810; --color-secondary: #1C141D; --color-text: #ededed; --color-text-on-light: #000000; --space-md: 16px; --font-heading: 'Manufacturing Consent', serif; --font-body: 'Tinos', serif;",
+  "pages": {
+    "landing": {
+      "structure": ["Hero (large centered ornamental frame with name)", "Badge row (three short role badges)", "Down-arrow prompt"],
+      "visualNotes": "Hero uses full-screen background of dark floral image overlaid by nothing (do not apply gradient). Title uses heading font in high-contrast #ededed. Selected language/button uses primary color #220810 as a small rounded rectangle or inset panel. Keep ornamental vintage frame SVG above/beside name."
+    },
+    "about": {
+      "structure": ["Left: portrait in an ornamental oval frame", "Center-left: About Me text block with decorative separators", "Right: Education and Skills columns with vintage icons and pinned notes"],
+      "visualNotes": "Use paper texture cards for pinned notes. Pins should use secondary (#1C141D) sparingly. Skill icons may be simple envelopes/frames with dark borders and light fill. Keep spacing airy and centered alignment for readability."
+    },
+    "contact": {
+      "structure": ["Centered contact form card (paper texture)", "Pinned notes around the form and small cat silhouette in the corner", "Footer contact line with icons"],
+      "visualNotes": "Contact page background is bckgrnd1.jfif. Input lines are single-rule (underline) style in muted text color. Send button is a small vintage button with black text and transparent background."
+    },
+    "projects": {
+      "structure": ["Tabbed filter row (Work Experience / Academic Projects / Research Projects)", "Project cards in a single column on left or masonry depending on screen width"],
+      "visualNotes": "Project cards are framed vintage posters with a small title band beneath (heading font). Hover effect: subtle lift (no bright glows), e.g., 6px translateY and shadow with low opacity. Maintain dark floral background behind cards."
+    }
+  },
+  "components": {
+    "nav": {
+      "layout": "Top-right language selector & top-left minimal logo (initials inside small frame). Navigation links are small uppercase with the heading font.",
+      "states": "Active/selected uses primary #220810 as background for the small pill; otherwise links are text #ededed with thin borders for hovered focus.",
+      "accessibility": "Focus indicator must be a visible 2px outline in --color-text with clear contrast."
+    },
+    "buttons": {
+      "primary": { "background": "#220810", "color": "#ededed", "borderRadius": 4, "padding": "6px 12px" },
+      "ghost": { "background": "transparent", "border": "1px solid #ededed", "color": "#ededed" },
+      "states": "Hover should slightly darken the background value; active shows inset shadow. No bright color shifts."
+    },
+    "cards": {
+      "frame": "Decorative SVG border around the card. Inner content sits on slightly textured paper (#f6f2ef tint only where necessary). Main card background on landing uses primary color rather than light paper.",
+      "imageTreatment": "Black-and-white or desaturated images inside a burgundy-tinted frame. Avoid color saturation that breaks goth vibe."
+    },
+    "form": {
+      "inputs": "Underline inputs, placeholder text in muted color, label above in Tinos small uppercase.",
+      "submit": "Small rectangular vintage button; when disabled, lower opacity and no pointer cursor."
+    }
+  },
+  "assetsAndIllustrationGuidance": {
+    "backgrounds": "High-resolution dark floral image(s). Provide one hero background and one repeated pattern for sections. Keep file sizes reasonable and apply lazy-loading.",
+    "ornaments": "Provide SVG ornamental borders/frames (thin stroke, not filled). Keep them monochrome (#ededed) so they contrast on dark backgrounds.",
+    "icons": "Black cat silhouette (SVG), moth illustration (SVG), small envelope/postage motifs. Keep silhouettes simple, sharp edges, single-color fills.",
+    "textures": "Paper texture JPEG/PNG for the central cards (subtle, low-contrast), used sparingly to avoid visual noise."
+  },
+  "accessibility": {
+    "contrast": "Ensure text on dark backgrounds passes AA (4.5:1) where body text appears; headings can be larger and use higher contrast.",
+    "keyboard": "All interactive elements (nav, tabs, buttons, form inputs) must be keyboard reachable and have visible focus styles.",
+    "forms": "Form fields must have associated labels. Use aria-live for form submission results. Provide reCAPTCHA alternative only if required."
+  },
+  "developerNotes": {
+    "css": "Use CSS variables for tokens; avoid component libraries that inject gradients or heavy default styles. Keep CSS reset minimal and prefer custom components.",
+    "fonts": "Load heading font (Manufacturing Consent) and Tinos from a reliable host (self-host or a licensing-compliant provider). If Manufacturing Consent is unavailable, choose a similarly ornate serif with high contrast.",
+    "performance": "Optimize background images with WebP fallbacks and lazy loading for non-hero backgrounds. Inline small SVG ornaments where practical for crisp rendering.",
+    "no": ["No gradients", "No emojis", "No bright neon colors", "No modern flat UI that conflicts with vintage aesthetic"]
+  },
+  "claudeUsageGuide": {
+    "goal": "How to instruct Claude using this file",
+    "examples": [
+      {
+        "task": "Generate CSS variables and a small CSS file for the tokens",
+        "prompt": "Using the design tokens in the provided JSON, generate a small CSS file that declares variables for colors, spacing, and fonts, plus basic body, h1, and button styles. Do not add gradients or emojis. Keep styles minimal and semantic."
+      },
+      {
+        "task": "Produce an accessible HTML template for the contact page",
+        "prompt": "Using the contact page spec, produce a semantic HTML template with the paper-card centered form, labeled inputs, and the suggested decorative SVG placeholders. Include class names that match the component tokens and add comments where SVG assets should be placed."
+      },
+      {
+        "task": "Export a component spec for Figma or Claude to generate frames",
+        "prompt": "Create a component-by-component spec (widths, padding, fonts, colors) for Figma frames: hero, card, nav, and form card. Provide measurements in px for a desktop 1440px artboard. Use the tokens in this file."
+      }
+    ]
+  },
+  "deliverables": [
+    "This JSON design file (design/claude_design.json)",
+    "Suggested next: Generate CSS, HTML templates, or Figma frames using Claude with prompts included above."
+  ]
+}
