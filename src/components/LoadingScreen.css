@@ -1,0 +1,47 @@
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-primary);
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+
+.loading-screen.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Same 6-frame sprite sheet technique as .contact__note-moth in ContactPage.css: the strip is
+   scaled to 6x the box and each step moves background-position-x by exactly one frame. */
+.loading-screen__moth {
+  width: 110px;
+  aspect-ratio: 1954 / 1284;
+  background-repeat: no-repeat;
+  background-size: 600% 100%;
+  background-position: 0% 0;
+  opacity: 0;
+  animation: loading-screen-flap 0.5s steps(5) infinite alternate;
+}
+
+.loading-screen__moth.is-visible {
+  opacity: 1;
+}
+
+@keyframes loading-screen-flap {
+  from {
+    background-position: 0% 0;
+  }
+  to {
+    background-position: 100% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loading-screen__moth {
+    animation-duration: 1.2s;
+  }
+}

@@ -44,7 +44,7 @@ export const projectsContent: Record<Language, ProjectsContent> = {
               'Designed responsive UI mockups in Figma, accelerating stakeholder approval and cutting redesign cycles through iterative feedback loops.',
             ],
             tools: ['React', 'Figma', 'PostgreSQL'],
-            links: [{ label: 'Website', href: 'http://colourishbubble.com/' }],
+            links: [{ label: 'Website', href: 'https://colourishbubble.com/' }],
           },
           {
             id: 'teaching-assistant',
@@ -88,7 +88,7 @@ export const projectsContent: Record<Language, ProjectsContent> = {
               'Docker',
               'Google OAuth',
             ],
-            links: [{ label: 'Website', href: 'http://arch-connect-nine.vercel.app/' }],
+            links: [{ label: 'Website', href: 'https://arch-connect-nine.vercel.app/' }],
           },
           {
             id: 'gul',
@@ -193,7 +193,7 @@ export const projectsContent: Record<Language, ProjectsContent> = {
               'صمّمت نماذج أولية لواجهات مستخدم متجاوبة باستخدام Figma، مما ساهم في تسريع اعتماد التصاميم من قِبل أصحاب المصلحة وتقليل دورات إعادة التصميم من خلال التحسين المستمر بناءً على الملاحظات.',
             ],
             tools: ['React', 'Figma', 'PostgreSQL'],
-            links: [{ label: 'الموقع الإلكتروني', href: 'http://colourishbubble.com/' }],
+            links: [{ label: 'الموقع الإلكتروني', href: 'https://colourishbubble.com/' }],
           },
           {
             id: 'teaching-assistant',
@@ -237,7 +237,7 @@ export const projectsContent: Record<Language, ProjectsContent> = {
               'Docker',
               'Google OAuth',
             ],
-            links: [{ label: 'الموقع الإلكتروني', href: 'http://arch-connect-nine.vercel.app/' }],
+            links: [{ label: 'الموقع الإلكتروني', href: 'https://arch-connect-nine.vercel.app/' }],
           },
           {
             id: 'gul',

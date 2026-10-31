@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import LoadingScreen from './components/LoadingScreen'
 import LandingPage from './components/LandingPage'
 import AboutPage from './components/AboutPage'
 import ProjectsPage from './components/ProjectsPage'
@@ -15,6 +16,7 @@ function App() {
 
   return (
     <>
+      <LoadingScreen />
       <LandingPage language={language} onLanguageChange={setLanguage} />
       <AboutPage language={language} />
       <ProjectsPage language={language} />
