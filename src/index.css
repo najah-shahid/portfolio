@@ -21,6 +21,10 @@
 
 * {
   box-sizing: border-box;
+  /* Mobile WebKit/Blink flash a default blue highlight on tap for any tappable element (links,
+     buttons, the project card's role="button" div). Keyboard users still get the :focus-visible
+     outlines defined throughout the component stylesheets, so this only removes the touch flash. */
+  -webkit-tap-highlight-color: transparent;
 }
 
 html,
